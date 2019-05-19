@@ -30,6 +30,9 @@ class ContactsController extends Controller
      */
     public function getContactMessages($id)
     {
+        // mark all messages between the 2 users as read
+        Message::markAsRead(request()->id);
+        
         $messages = Message::getMessages($id)->get();
         
         return response()->json($messages);
@@ -55,4 +58,5 @@ class ContactsController extends Controller
         // respond with a json response
         return response()->json($message);
     }
+
 }

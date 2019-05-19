@@ -37,10 +37,22 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    protected $appends = [
+        'unread_messages_counter'
+    ];
+
     /** Relations */
     public function messages()
     {
-        return $this->hasMany(Message::class, 'to');
+        return $this->hasMany(Message::class, 'from');
     }
 
+    /** Mutators */
+    public function getUnreadMessagesCounterAttribute()
+    {
+        $counter = Message::getUserMessages($this->id, false)
+                ->count();
+
+        return $this->attributes['unread_messages_counter'] = $counter;
+    }
 }

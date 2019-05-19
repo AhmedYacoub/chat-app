@@ -1807,6 +1807,7 @@ __webpack_require__.r(__webpack_exports__);
     startConversationWith: function startConversationWith(contact) {
       var _this2 = this;
 
+      this.updateUnreadMessageCounter(contact, true);
       axios.get("/conversation/".concat(contact.id)).then(function (response) {
         _this2.messages = response.data;
         _this2.selectedContact = contact;
@@ -1822,7 +1823,17 @@ __webpack_require__.r(__webpack_exports__);
         return;
       }
 
-      alert(message.text);
+      this.updateUnreadMessageCounter(message.owner, false);
+    },
+    updateUnreadMessageCounter: function updateUnreadMessageCounter(contact, reset) {
+      this.contacts = this.contacts.map(function (single) {
+        if (single.id !== contact.id) {
+          return single;
+        }
+
+        if (reset) single.unread_messages_counter = 0;else single.unread_messages_counter += 1;
+        return single;
+      });
     }
   },
   // use the imported components
@@ -1862,6 +1873,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     contacts: {
@@ -1871,13 +1884,26 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      selected: 0
+      selected: this.contacts.length ? this.contacts[0] : null
     };
   },
   methods: {
-    selectContact: function selectContact(index, contact) {
-      this.selected = index;
+    selectContact: function selectContact(contact) {
+      this.selected = contact;
       this.$emit('selected', contact);
+    }
+  },
+  computed: {
+    sortedContacts: function sortedContacts() {
+      var _this = this;
+
+      return _.sortBy(this.contacts, [function (contact) {
+        if (contact == _this.selected) {
+          return Infinity;
+        }
+
+        return contact.unread_messages_counter;
+      }]).reverse();
     }
   }
 });
@@ -6522,7 +6548,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".contacts-list[data-v-0ee8d67a] {\n  flex: 2;\n  max-height: 500px;\n  overflow: scroll;\n  border-left: 1px solid #bdc3c7;\n  list-style-type: none;\n  padding-left: 0;\n}\nul[data-v-0ee8d67a] {\n  list-style-type: none;\n  padding-left: 0px;\n}\nul li[data-v-0ee8d67a] {\n  display: flex;\n  padding: 20px;\n  border-bottom: 1px solid #bdc3c7;\n  position: relative;\n  cursor: pointer;\n}\nul .selected[data-v-0ee8d67a] {\n  background: #ecf0f1;\n}\nul .avatar[data-v-0ee8d67a] {\n  flex: 1;\n  display: flex;\n  align-items: center;\n}\nul img[data-v-0ee8d67a] {\n  width: 40px;\n  border-radius: 50%;\n  margin: 0 auto;\n}\nul .contact[data-v-0ee8d67a] {\n  flex: 3;\n  font-size: 10px;\n  overflow: hidden;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n}\nul .contact p[data-v-0ee8d67a] {\n  margin: 0;\n}\nul .contact p p.name[data-v-0ee8d67a] {\n  font-weight: bold;\n}", ""]);
+exports.push([module.i, ".contacts-list[data-v-0ee8d67a] {\n  flex: 2;\n  max-height: 500px;\n  overflow: scroll;\n  border-left: 1px solid #bdc3c7;\n  list-style-type: none;\n  padding-left: 0;\n}\nul[data-v-0ee8d67a] {\n  list-style-type: none;\n  padding-left: 0px;\n}\nul li[data-v-0ee8d67a] {\n  display: flex;\n  padding: 20px;\n  border-bottom: 1px solid #bdc3c7;\n  position: relative;\n  cursor: pointer;\n}\nul .selected[data-v-0ee8d67a] {\n  background: #ecf0f1;\n}\nul span.unread[data-v-0ee8d67a] {\n  background: #82e0a8;\n  color: #fff;\n  position: absolute;\n  right: 11px;\n  top: 20px;\n  display: flex;\n  font-weight: 700;\n  min-width: 20px;\n  justify-content: center;\n  align-items: center;\n  line-height: 20px;\n  font-size: 12px;\n  padding: 0 4px;\n  border-radius: 3px;\n}\nul .avatar[data-v-0ee8d67a] {\n  flex: 1;\n  display: flex;\n  align-items: center;\n}\nul img[data-v-0ee8d67a] {\n  width: 40px;\n  border-radius: 50%;\n  margin: 0 auto;\n}\nul .contact[data-v-0ee8d67a] {\n  flex: 3;\n  font-size: 10px;\n  overflow: hidden;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n}\nul .contact p[data-v-0ee8d67a] {\n  margin: 0;\n}\nul .contact p p.name[data-v-0ee8d67a] {\n  font-weight: bold;\n}", ""]);
 
 // exports
 
@@ -48377,15 +48403,15 @@ var render = function() {
   return _c("div", { staticClass: "contacts-list" }, [
     _c(
       "ul",
-      _vm._l(_vm.contacts, function(contact, index) {
+      _vm._l(_vm.sortedContacts, function(contact) {
         return _c(
           "li",
           {
             key: contact.id,
-            class: { selected: index == _vm.selected },
+            class: { selected: contact == _vm.selected },
             on: {
               click: function($event) {
-                return _vm.selectContact(index, contact)
+                return _vm.selectContact(contact)
               }
             }
           },
@@ -48406,7 +48432,13 @@ var render = function() {
                 staticClass: "email",
                 domProps: { textContent: _vm._s(contact.email) }
               })
-            ])
+            ]),
+            _vm._v(" "),
+            contact.unread_messages_counter
+              ? _c("span", { staticClass: "unread" }, [
+                  _vm._v(_vm._s(contact.unread_messages_counter))
+                ])
+              : _vm._e()
           ]
         )
       }),
@@ -48543,7 +48575,7 @@ var render = function() {
           [
             _c(
               "div",
-              { staticClass: "text", attrs: { title: message.send_date } },
+              { staticClass: "text", attrs: { title: message.sent_at } },
               [
                 _vm._v(
                   "\n                " +

@@ -2,7 +2,7 @@
     <div class="feed" ref="feed">
         <ul>
             <li v-for="message in messages" :class="`message${message.to == contact.id ? ' sent' : ' received'}`" :key="message.id">
-                <div class="text" :title="message.send_date">
+                <div class="text" :title="message.sent_at">
                     {{ message.text }} 
                 </div>
             </li>

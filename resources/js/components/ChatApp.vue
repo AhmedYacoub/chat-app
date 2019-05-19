@@ -45,6 +45,8 @@
 
         methods: {
             startConversationWith(contact) {
+                this.updateUnreadMessageCounter(contact, true);
+
                 axios.get(`/conversation/${contact.id}`)
                     .then((response) => {
                         this.messages = response.data;
@@ -62,8 +64,23 @@
                     this.saveNewMessage(message);
                     return;
                 }
+            
+                this.updateUnreadMessageCounter(message.owner, false);
+            },
 
-                alert(message.text);
+            updateUnreadMessageCounter(contact, reset) {
+                this.contacts = this.contacts.map((single) => {
+                    if (single.id !== contact.id) {
+                        return single;
+                    }
+
+                    if (reset) 
+                        single.unread_messages_counter = 0;
+                    else 
+                        single.unread_messages_counter += 1;
+
+                    return single;
+                });
             }
         },
 

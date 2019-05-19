@@ -1,7 +1,7 @@
 <template>
     <div class="contacts-list">
         <ul>
-            <li v-for="(contact, index) in contacts" :key="contact.id" @click="selectContact(index, contact)" :class="{'selected': index == selected}">
+            <li v-for="contact in sortedContacts" :key="contact.id" @click="selectContact(contact)" :class="{'selected': contact == selected}">
                 
                 <div class="avatar">
                     <img :src="contact.profile_image" alt="contact.name">
@@ -11,6 +11,8 @@
                     <p class="name" v-text="contact.name"></p>
                     <p class="email" v-text="contact.email"></p>
                 </div>
+
+                <span class="unread" v-if="contact.unread_messages_counter">{{ contact.unread_messages_counter }}</span>
 
             </li>
         </ul>
@@ -27,13 +29,26 @@
         },
         data() {
             return {
-                selected: 0,
+                selected: this.contacts.length ? this.contacts[0] : null,
             }
         },
         methods: {
-            selectContact(index, contact) {
-                this.selected = index;
+            selectContact(contact) {
+                this.selected = contact;
                 this.$emit('selected', contact);
+            }
+        },
+
+        computed: {
+            sortedContacts() {
+                return _.sortBy(this.contacts, [(contact) => {
+
+                    if (contact == this.selected) {
+                        return Infinity;
+                    }
+
+                    return contact.unread_messages_counter;
+                }]).reverse();
             }
         }
     }
@@ -64,6 +79,23 @@
 
         .selected {
             background: #ecf0f1;
+        }
+
+        span.unread {
+            background: #82e0a8;
+            color: #fff;
+            position: absolute;
+            right: 11px;
+            top: 20px;
+            display: flex;
+            font-weight: 700;
+            min-width: 20px;
+            justify-content: center;
+            align-items: center;
+            line-height: 20px;
+            font-size: 12px;
+            padding: 0 4px;
+            border-radius: 3px;
         }
 
         .avatar {
