@@ -14,6 +14,7 @@
         <li><code>php artisan db:seed </code> (optional) for fake users and messages</li>
         <li><code>npm install</code></li>
     </ul>
+    <li>Feel free to register or use fake users (if you used seeds) to login and chat</li>
 </ol>
 
 <h2>Please star and watch if you find this useful ^_^</h2>

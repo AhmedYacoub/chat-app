@@ -5,9 +5,14 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
+import toastr from 'vue-toastr-2';
+import 'vue-toastr-2/dist/vue-toastr-2.min.css'
+
 require('./bootstrap');
 
 window.Vue = require('vue');
+window.toastr = require('toastr');
+Vue.use(toastr);
 
 // Don't forget .default again -__-
 Vue.component('chat-app', require('./components/ChatApp.vue').default);

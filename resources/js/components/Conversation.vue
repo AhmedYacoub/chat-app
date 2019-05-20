@@ -41,6 +41,7 @@
             sendMessage(text) {
                 // check if there is a selected contact
                 if (!this.contact) {
+                    this.$toastr.warning('You have to select a contact first');
                     return;
                 }
 

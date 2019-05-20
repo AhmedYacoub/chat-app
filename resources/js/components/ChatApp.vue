@@ -65,6 +65,9 @@
                     return;
                 }
             
+                // toastr code
+                this.$toastr.info(`${message.text}`, `${message.owner.name}`, {timeOut: 5000});
+
                 this.updateUnreadMessageCounter(message.owner, false);
             },
 
