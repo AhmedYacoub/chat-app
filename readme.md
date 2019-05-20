@@ -4,6 +4,7 @@
 <ol>
     <li>Download to clone this repo.</li>
     <li>In the terminal cd to the repo directory.</li>
+    <li>Create a new database for this project</li>
     <li>Rename .env.example to .env </li>
     <li>.env file contains pusherjs credentials, you could change it with yours, by signing up and following the instructions from <a href="https://dashboard.pusher.com/">here</a></li>
     <li><b>Run the following commands</b></li>
