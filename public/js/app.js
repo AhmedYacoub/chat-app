@@ -49023,7 +49023,7 @@ var render = function() {
           expression: "message"
         }
       ],
-      attrs: { placeholder: "press enter to send.." },
+      attrs: { id: "message", placeholder: "press enter to send.." },
       domProps: { value: _vm.message },
       on: {
         keydown: function($event) {
