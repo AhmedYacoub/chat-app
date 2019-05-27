@@ -12,7 +12,7 @@
         <!-- Styles -->
         <style>
             html, body {
-                background-color: #fff;
+                background: url("{{ asset('img/email-pattern.png') }}");
                 color: #636b6f;
                 font-family: 'Nunito', sans-serif;
                 font-weight: 200;
@@ -48,18 +48,34 @@
                 font-size: 84px;
             }
 
-            .links > a {
+            .links > a  {
                 color: #636b6f;
                 padding: 0 25px;
-                font-size: 13px;
+                font-size: 14px;
                 font-weight: 600;
                 letter-spacing: .1rem;
                 text-decoration: none;
                 text-transform: uppercase;
             }
+            
+            .links > p {
+                font-size: 20px;
+            }
 
             .m-b-md {
                 margin-bottom: 30px;
+            }
+
+            .logo {
+                display: flex;
+                max-width: 500px;
+            }
+
+            .logo  img {
+                max-width: 128px;
+                max-height: 128px;
+                flex: 1;
+                margin: 0px 44px;
             }
         </style>
     </head>
@@ -81,17 +97,24 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    Laravel Chat App
                 </div>
 
                 <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                    <p>Basic Facebook messanger like app using Laravel, Pusher and Laravel Echo.</p>
+                </div>
+
+                <div class="logo">
+                    <a href="https://laravel.com/" title="Laravel Framework">
+                        <img src="{{ asset('images/LaravelLogo.png') }}" alt="Laravel Logo">
+                    </a>
+                    <a href="https://pusher.com/" title="Pusher JS">
+                        <img src="{{ asset('images/PusherJs.png') }}" alt="Pusher JS Logo">
+                    </a>
+                    
+                    <a href="https://laravel.com/docs/5.8/broadcasting#installing-laravel-echo" title="Laravel Echo">
+                        <img src="{{ asset('images/LaravelEcho.png') }}" alt="Laravel Echo Logo">
+                    </a>
                 </div>
             </div>
         </div>

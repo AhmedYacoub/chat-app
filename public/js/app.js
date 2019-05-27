@@ -1998,6 +1998,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   // data
   data: function data() {
@@ -6553,7 +6556,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".contacts-list[data-v-0ee8d67a] {\n  flex: 2;\n  max-height: 500px;\n  overflow: scroll;\n  border-left: 1px solid #bdc3c7;\n  list-style-type: none;\n  padding-left: 0;\n}\nul[data-v-0ee8d67a] {\n  list-style-type: none;\n  padding-left: 0px;\n}\nul li[data-v-0ee8d67a] {\n  display: flex;\n  padding: 20px;\n  border-bottom: 1px solid #bdc3c7;\n  position: relative;\n  cursor: pointer;\n}\nul .selected[data-v-0ee8d67a] {\n  background: #ecf0f1;\n}\nul span.unread[data-v-0ee8d67a] {\n  background: #82e0a8;\n  color: #fff;\n  position: absolute;\n  right: 11px;\n  top: 20px;\n  display: flex;\n  font-weight: 700;\n  min-width: 20px;\n  justify-content: center;\n  align-items: center;\n  line-height: 20px;\n  font-size: 12px;\n  padding: 0 4px;\n  border-radius: 3px;\n}\nul .avatar[data-v-0ee8d67a] {\n  flex: 1;\n  display: flex;\n  align-items: center;\n}\nul img[data-v-0ee8d67a] {\n  width: 40px;\n  border-radius: 50%;\n  margin: 0 auto;\n}\nul .contact[data-v-0ee8d67a] {\n  flex: 3;\n  font-size: 10px;\n  overflow: hidden;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n}\nul .contact p[data-v-0ee8d67a] {\n  margin: 0;\n}\nul .contact p p.name[data-v-0ee8d67a] {\n  font-weight: bold;\n}", ""]);
+exports.push([module.i, ".contacts-list[data-v-0ee8d67a] {\n  flex: 2;\n  max-height: 550px;\n  overflow: scroll;\n  border-left: 1px solid #bdc3c7;\n  list-style-type: none;\n  padding-left: 0;\n}\nul[data-v-0ee8d67a] {\n  list-style-type: none;\n  padding-left: 0px;\n}\nul li[data-v-0ee8d67a] {\n  display: flex;\n  padding: 20px;\n  border-bottom: 1px solid #bdc3c7;\n  position: relative;\n  cursor: pointer;\n}\nul .selected[data-v-0ee8d67a] {\n  background: #ecf0f1;\n}\nul span.unread[data-v-0ee8d67a] {\n  background: #82e0a8;\n  color: #fff;\n  position: absolute;\n  right: 11px;\n  top: 20px;\n  display: flex;\n  font-weight: 700;\n  min-width: 20px;\n  justify-content: center;\n  align-items: center;\n  line-height: 20px;\n  font-size: 12px;\n  padding: 0 4px;\n  border-radius: 3px;\n}\nul .avatar[data-v-0ee8d67a] {\n  flex: 1;\n  display: flex;\n  align-items: center;\n}\nul img[data-v-0ee8d67a] {\n  width: 40px;\n  border-radius: 50%;\n  margin: 0 auto;\n}\nul .contact[data-v-0ee8d67a] {\n  flex: 3;\n  font-size: 10px;\n  overflow: hidden;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n}\nul .contact p[data-v-0ee8d67a] {\n  margin: 0;\n}\nul .contact p p.name[data-v-0ee8d67a] {\n  font-weight: bold;\n}", ""]);
 
 // exports
 
@@ -6591,7 +6594,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".composer textarea[data-v-5a28bf2c] {\n  width: 97%;\n  margin: 10px;\n  resize: none;\n  border-radius: 3px;\n  border: 1px solid lightgray;\n  padding: 6px;\n}", ""]);
+exports.push([module.i, ".composer[data-v-5a28bf2c] {\n  display: flex;\n}\n.composer textarea[data-v-5a28bf2c] {\n  flex: 19;\n  width: 90%;\n  margin: 10px 0px 10px 10px;\n  resize: none;\n  border-radius: 3px;\n  border: 1px solid lightgray;\n  padding: 6px;\n}\n#sendBtn[data-v-5a28bf2c] {\n  flex: 1;\n  margin: 10px 10px 10px 0px;\n  height: 58px;\n}", ""]);
 
 // exports
 
@@ -49042,7 +49045,17 @@ var render = function() {
           _vm.message = $event.target.value
         }
       }
-    })
+    }),
+    _vm._v(" "),
+    _c(
+      "button",
+      {
+        staticClass: "btn btn-primary",
+        attrs: { id: "sendBtn", title: "send message" },
+        on: { click: _vm.send }
+      },
+      [_c("i", { staticClass: "fa fa-paper-plane" })]
+    )
   ])
 }
 var staticRenderFns = []
