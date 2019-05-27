@@ -1,6 +1,9 @@
 <template>
     <div class="composer">
         <textarea id="message" v-model="message" @keydown.enter="send" placeholder="press enter to send.."></textarea>
+        <button id="sendBtn" class="btn btn-primary" title="send message" @click="send">
+            <i class="fa fa-paper-plane"></i>
+        </button>
     </div>
 </template>
 
@@ -35,13 +38,24 @@
 </script>
 
 <style lang="scss" scoped>
+
+    .composer {
+        display: flex;
+    }
     .composer textarea {
-        width: 97%;
-        margin: 10px;
+        flex: 19;
+        width: 90%;
+        margin: 10px 0px 10px 10px;
         resize: none;
         border-radius: 3px;
         border: 1px solid lightgray;
         padding: 6px;
+    }
+
+    #sendBtn {
+        flex: 1;
+        margin: 10px 10px 10px 0px;
+        height: 58px;
     }
 </style>
 
