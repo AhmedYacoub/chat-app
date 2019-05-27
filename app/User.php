@@ -55,4 +55,10 @@ class User extends Authenticatable
 
         return $this->attributes['unread_messages_counter'] = $counter;
     }
+
+    // check if profile_image field is null or empty to give it default value
+    public function getProfileImageAttribute($value)
+    {
+        return is_null($value) || empty($value) ? 'img/male.png' : $value;
+    }
 }
