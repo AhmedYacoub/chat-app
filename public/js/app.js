@@ -1998,6 +1998,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   // data
   data: function data() {
@@ -6591,7 +6594,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".composer textarea[data-v-5a28bf2c] {\n  width: 97%;\n  margin: 10px;\n  resize: none;\n  border-radius: 3px;\n  border: 1px solid lightgray;\n  padding: 6px;\n}", ""]);
+exports.push([module.i, ".composer[data-v-5a28bf2c] {\n  display: flex;\n}\n.composer textarea[data-v-5a28bf2c] {\n  flex: 19;\n  width: 90%;\n  margin: 10px 0px 10px 10px;\n  resize: none;\n  border-radius: 3px;\n  border: 1px solid lightgray;\n  padding: 6px;\n}\n#sendBtn[data-v-5a28bf2c] {\n  flex: 1;\n  margin: 10px 10px 10px 0px;\n  height: 58px;\n}", ""]);
 
 // exports
 
@@ -49042,7 +49045,17 @@ var render = function() {
           _vm.message = $event.target.value
         }
       }
-    })
+    }),
+    _vm._v(" "),
+    _c(
+      "button",
+      {
+        staticClass: "btn btn-primary",
+        attrs: { id: "sendBtn", title: "send message" },
+        on: { click: _vm.send }
+      },
+      [_c("i", { staticClass: "fa fa-paper-plane" })]
+    )
   ])
 }
 var staticRenderFns = []
